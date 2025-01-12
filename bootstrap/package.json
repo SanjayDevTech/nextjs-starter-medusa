@@ -1,0 +1,16 @@
+{
+  "name": "bootstrap",
+  "version": "1.0.0",
+  "main": "launcher.js",
+  "bin": {
+    "launcher": "bin/launcher.js",
+    "wait-for-backend": "bin/wait-for-backend.js"
+  },
+  "scripts": {
+    
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

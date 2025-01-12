@@ -8,9 +8,11 @@
     "medusa-storefront"
   ],
   "scripts": {
-    "dev": "next dev --turbopack -p 8000",
-    "build": "next build",
-    "start": "next start -p 8000",
+    "wait": "wait-for-backend",
+    "dev": "yarn wait && yarn launcher dev",
+    "build": "yarn wait && yarn launcher build",
+    "build:next": "next build",
+    "start": "yarn launcher start",
     "lint": "next lint",
     "analyze": "ANALYZE=true next build"
   },
@@ -21,6 +23,9 @@
     "@radix-ui/react-accordion": "^1.2.1",
     "@stripe/react-stripe-js": "^1.7.2",
     "@stripe/stripe-js": "^1.29.0",
+    "axios": "^1.7.9",
+    "bootstrap": "file:./bootstrap",
+    "dotenv": "^16.4.7",
     "lodash": "^4.17.21",
     "next": "15.0.3",
     "pg": "^8.11.3",
