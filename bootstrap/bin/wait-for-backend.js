@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { checkBackend } from '../wait-for-backend.js';
+const { checkBackend } = require('../wait-for-backend');
 
 const backendUrl = (process.env.MEDUSA_BACKEND_URL || 'http://localhost:9000') + '/key-exchange';
 checkBackend(backendUrl)

@@ -1,4 +1,4 @@
-import axios from 'axios';
+const axios = require('axios');
 
 const checkBackend = (url, timeout = 1200) => {
   return new Promise((resolve, reject) => {
@@ -35,4 +35,6 @@ const checkBackend = (url, timeout = 1200) => {
   });
 };
 
-export { checkBackend };
+module.exports = {
+  checkBackend
+}

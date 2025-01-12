@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-import dotenv from 'dotenv';
-import { launchStorefront } from '../launcher.js';
+const dotenv = require('dotenv');
+const { launchStorefront } = require('../launcher');
 
 dotenv.config();
 

@@ -1,6 +1,5 @@
-import axios from 'axios';
-import { spawn } from 'child_process';
-import { setTimeout } from 'timers/promises';
+const axios = require('axios');
+const { spawn } = require('child_process');
 
 const runCommand = (command, env) => {
   const [cmd, ...args] = command.split(' ');
@@ -141,4 +140,6 @@ const launchStorefront = async (command, config) => {
   }
 };
 
-export { launchStorefront };
+module.exports = {
+  launchStorefront
+};
