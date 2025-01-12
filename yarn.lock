@@ -4300,11 +4300,11 @@ __metadata:
 
 "bootstrap@file:./bootstrap::locator=medusa-next%40workspace%3A.":
   version: 1.0.0
-  resolution: "bootstrap@file:./bootstrap#./bootstrap::hash=b6f0f5&locator=medusa-next%40workspace%3A."
+  resolution: "bootstrap@file:./bootstrap#./bootstrap::hash=9f67ef&locator=medusa-next%40workspace%3A."
   bin:
     launcher: bin/launcher.js
     wait-for-backend: bin/wait-for-backend.js
-  checksum: 0baef99f2097a5cdc501749cb9edcc942183a7791de4a3785fffbf4365a432f07592ea244313ea41bc5053253f2b57454216e063415fcc8c7322c3a32a738d27
+  checksum: 6a3239ed50561e4a5cbe010b0b03d30224cc5dcab6146afe47b37746e7105e6b2f9ec69ce905b40ec1ada0a64f791a4cfb5a6ddd16f050abcff0429dfce5b13f
   languageName: node
   linkType: hard
 
