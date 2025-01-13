@@ -9,37 +9,33 @@ type Props = {
 }
 
 export async function generateStaticParams() {
-  try {
-    const countryCodes = await listRegions().then((regions) =>
-      regions?.map((r) => r.countries?.map((c) => c.iso_2)).flat()
-    )
+  const countryCodes = await listRegions().then((regions) =>
+    regions?.map((r) => r.countries?.map((c) => c.iso_2)).flat()
+  )
 
-    if (!countryCodes) {
-      return []
-    }
+  if (!countryCodes) {
+    return []
+  }
 
+  const staticParams = []
+
+  for (const countryCode of countryCodes) {
     const products = await listProducts({
-      countryCode: "US",
+      countryCode,
       queryParams: { fields: "handle" },
     }).then(({ response }) => response.products)
 
-    return countryCodes
-      .map((countryCode) =>
-        products.map((product) => ({
+    staticParams.push(
+      ...products
+        .map((product) => ({
           countryCode,
           handle: product.handle,
         }))
-      )
-      .flat()
-      .filter((param) => param.handle)
-  } catch (error) {
-    console.error(
-      `Failed to generate static paths for product pages: ${
-        error instanceof Error ? error.message : "Unknown error"
-      }.`
+        .filter((param) => param.handle)
     )
-    return []
   }
+
+  return staticParams
 }
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
