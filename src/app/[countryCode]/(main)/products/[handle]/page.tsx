@@ -1,41 +1,26 @@
 import { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { listProducts } from "@lib/data/products"
-import { getRegion, listRegions } from "@lib/data/regions"
+import { getRegion } from "@lib/data/regions"
 import ProductTemplate from "@modules/products/templates"
 
 type Props = {
   params: Promise<{ countryCode: string; handle: string }>
 }
 
-export async function generateStaticParams() {
-  const countryCodes = await listRegions().then((regions) =>
-    regions?.map((r) => r.countries?.map((c) => c.iso_2)).flat()
-  )
+export async function generateStaticParams({
+  params: { countryCode },
+}: {
+  params: { countryCode: string }
+}) {
+  const products = await listProducts({
+    countryCode,
+    queryParams: { fields: "handle" },
+  }).then(({ response }) => response.products)
 
-  if (!countryCodes) {
-    return []
-  }
-
-  const staticParams = []
-
-  for (const countryCode of countryCodes) {
-    const products = await listProducts({
-      countryCode,
-      queryParams: { fields: "handle" },
-    }).then(({ response }) => response.products)
-
-    staticParams.push(
-      ...products
-        .map((product) => ({
-          countryCode,
-          handle: product.handle,
-        }))
-        .filter((param) => param.handle)
-    )
-  }
-
-  return staticParams
+  return products.map((product) => ({
+    handle: product.handle,
+  }))
 }
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
